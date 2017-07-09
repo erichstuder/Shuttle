@@ -3,13 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Shuttle;assembly=Shuttle"
              x:Class="Shuttle.MainPage"
-             Title="Main Page"
+             Title="Shuttle"
              BackgroundColor="AliceBlue"
              Padding="1, 20, 1, 1">
 
     <ContentPage.BindingContext>
         <local:SearchViewModel/>
     </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="RefTimeTables_MenuItem" Order="Secondary"  Text="Fahrpläne" Priority="0" Clicked="MenuItem_TimetableRef_Clicked" />
+    </ContentPage.ToolbarItems>
 
     <StackLayout
         VerticalOptions="StartAndExpand">

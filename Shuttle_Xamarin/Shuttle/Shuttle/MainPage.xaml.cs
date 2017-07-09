@@ -42,6 +42,11 @@ namespace Shuttle
                 await Navigation.PushModalAsync(stationSelectPage);
             }
         }
+
+        private async void MenuItem_TimetableRef_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new TimetableRefPage());
+        }
     }
 
 

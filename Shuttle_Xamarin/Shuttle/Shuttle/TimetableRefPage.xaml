@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shuttle.TimetableRefPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView
+                x:Name="ListView_TimetableRefNames"
+                BackgroundColor="AliceBlue"
+                VerticalOptions="FillAndExpand"
+                
+                ItemTapped="ListView_TimetableRefNames_ItemSelected">
+
+                <!---->
+                <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Test}"
+                    TextColor="#f35e20"
+                    DetailColor="#503026" />
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+            
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

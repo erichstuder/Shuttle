@@ -13,10 +13,10 @@ namespace Shuttle
         {
             InitializeComponent();
 
-            MainPage = new Shuttle.MainPage();
+            //MainPage = new Shuttle.MainPage();
             
 
-            //MainPage = new NavigationPage(new Shuttle.MainPage());
+            MainPage = new NavigationPage(new Shuttle.MainPage());
             //NavigationPage.SetHasNavigationBar(this, false);
             //NavigationPage.SetHasBackButton(this, false);
         }
