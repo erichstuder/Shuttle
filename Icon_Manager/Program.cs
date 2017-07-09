@@ -15,8 +15,9 @@ namespace Icon_Manager
             Image result;
             Image img = Image.FromFile("..\\..\\icon_original.png");
             Image squareImg = makeSquareImage(img);
-            //Image img = Image.FromFile("..\\..\\original.png");
-            squareImg.Save("..\\..\\..\\Shuttle_Xamarin\\Shuttle\\Shuttle.Droid\\Resources\\drawable\\icon.png");
+
+            result = resizeImage(squareImg, 192, 192); //biggest size according to https://developer.android.com/guide/practices/ui_guidelines/icon_design_launcher.html
+            result.Save("..\\..\\..\\Shuttle_Xamarin\\Shuttle\\Shuttle.Droid\\Resources\\drawable\\icon.png");
 
             // Droid
             result = resizeImage(squareImg, 200, 200);
