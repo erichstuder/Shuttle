@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<timetablePrintInfoList>
+  <timetablePrintInfo>
+    <regionInfo>Flims Laax Falera Shuttle</regionInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>10.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>12</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>13</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Falera, posta
+        Falera, Parcadi
+        Falera, Chintguns
+        Laax GR, Fau
+        Laax GR, See/Lag
+        Laax GR, posta
+        Laax GR, Demvitg
+        Laax GR, Marcau
+        Laax GR, Rancho
+        Laax GR, Bergbahnen
+        Laax GR, Staderas
+        Flims Waldhaus, Camping
+        Flims Waldhaus, Caumasee
+        Flims Waldhaus, Segnes
+        Flims Dorf, Promenada
+        Flims Dorf, Bergbahnen
+        Flims Dorf, Post
+        Flims Dorf, Denter Vias
+        Flims, Spielplatz Plaids
+        Fidaz, Kirche
+        Fidaz, Post
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>7</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>8</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Flims, Pleuncas
+        Flims, Fussweg Caglims
+        Flims, Oberdorf
+        Flims Dorf, Bergbahnen
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>12</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>13</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Flims, Pleuncas
+        Flims, Caglims
+        Flims, Casa Caglims
+        Flims Dorf, Bergbahnen
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Flims, Lieptgas
+        Flims, Langlaufzentrum
+        Flims, Surpunt
+        Flims, Sumandedas
+        Flims Dorf, Bergbahnen
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Flims, Kath. Kirche
+        Flims, Spielplatz Waldhaus
+        Flims, Abzweigung II Stuz
+        Flims Dorf, Bergbahnen
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Flims Dorf, Bergbahnen
+        Flims, Hapimag
+        Flims Dorf, Promenada
+        Flims, Sportz. Prau la Selva
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Flims Dorf, Bergbahnen
+        Flims, Dorfbrunnen
+        Flims, Canginas
+        Flims, Val Tgiern
+        Flims, Fischeisch
+        Flims, Fischeisch Wendeplatz
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Laax GR, Salums sura
+        Laax GR, Straussennest
+        Laax GR, Bergbahnen
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Laax GR, Cons
+        Laax GR, Via Plauna
+        Laax GR, Bergbahnen
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Laax GR, Bergbahnen
+        Laax GR, Taviarna
+        Laax GR, Oasa
+        Laax GR, Acla
+        Laax GR, Bergbahnen
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>17.04.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Falera, Manduns
+        Falera, Giaus sura
+        Falera, Parcadi
+        Falera, Pasternaria Veglia
+        Falera, posta
+        Falera, Prau da Cuort
+        Falera, Samun
+        Falera, Lavintgin
+        Falera, Sulom da Puoz
+        Falera, Volg
+        Falera, Via Fuorns
+        Falera, La Fermata
+        Falera, Mulin
+        Falera, Ponylift
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.12.2016</startDate>
+        <endDate>26.03.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Flims Dorf, Post
+        Flims, Spielplatz Plaids
+        Fidaz, Kirche
+        Fidaz, Post
+        Fidaz, Pinut
+        Fidaz, Waldrand
+        Flims, Bargis
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>18.04.2017</startDate>
+        <endDate>02.06.2017</endDate>
+      </activePeriod>
+      <activePeriod>
+        <startDate>23.10.2017</startDate>
+        <endDate>09.12.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>11</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>14</tripsPerPage> <!--eigentlich sind es nur 11 aber scheinbar sind ein paar durchgehende Fahrten als 2 Trips definiert-->
+      </backward>
+      <routeDefinition>
+        Fidaz, Post
+        Fidaz, Kirche
+        Flims, Spielplatz Plaids
+        Flims Dorf, Denter Vias
+        Flims Dorf, Post
+        Flims Dorf, Bergbahnen
+        Flims Dorf, Promenada
+        Flims Waldhaus, Segnes
+        Flims Waldhaus, Caumasee
+        Flims Waldhaus, Camping
+        Laax GR, Staderas
+        Laax GR, Bergbahnen
+        Laax GR, Rancho
+        Laax GR, Marcau
+        Laax GR, Demvitg
+        Laax GR, posta
+        Laax GR, See/Lag
+        Laax GR, Fau
+        Falera, Chintguns
+        Falera, Parcadi
+        Falera, posta
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>03.06.2017</startDate>
+        <endDate>22.10.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>15</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>16</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Flims, Bargis
+        Fidaz, Waldrand
+        Fidaz, Pinut
+        Fidaz, Post
+        Fidaz, Kirche
+        Flims, Spielplatz Plaids
+        Flims Dorf, Denter Vias
+        Flims Dorf, Post
+        Flims Dorf, Bergbahnen
+        Flims Dorf, Promenada
+        Flims Waldhaus, Segnes
+        Flims Waldhaus, Caumasee
+        Flims Waldhaus, Camping
+        Laax GR, Staderas
+        Laax GR, Bergbahnen
+        Laax GR, Rancho
+        Laax GR, Marcau
+        Laax GR, Demvitg
+        Laax GR, posta
+        Laax GR, See/Lag
+        Laax GR, Fau
+        Falera, Chintguns
+        Falera, Parcadi
+        Falera, posta
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>01.07.2017</startDate>
+        <endDate>22.10.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Laax GR, posta
+        Laax GR, Marcau
+        Laax GR, Rancho
+        Laax GR, Bergbahnen
+        Laax GR, Val Vau
+        Laax GR, Abzw. Plaun
+        Alp Nagens
+        Laax GR, Nagens
+      </routeDefinition>
+    </routePrintInfo>
+  </timetablePrintInfo>
+  <timetablePrintInfo>
+    <regionInfo>Arosa</regionInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>18.04.2017</startDate>
+        <endDate>16.06.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Arosa, Gada
+        Arosa, Kulm
+        Arosa, Brüggli/Skischule
+        Arosa, Bellevue
+        Arosa, Rathaus
+        Arosa, Zentrum
+        Arosa, Weisshornbahn/Skischule
+        Arosa, Bahnhof
+        Arosa, Obersee
+        Arosa, Surlej
+        Arosa, Sandhubel
+        Arosa, Alteinplatz
+        Arosa, Wetterweide
+        Arosa, Untersee
+        Arosa, Wetterweide
+        Arosa, Alteinplatz
+        Arosa, Sandhubel
+        Arosa, Seeboden
+        Arosa, Waldwiese/Seilpark
+        Arosa, Seehalde
+        Arosa, Gollrad
+        Arosa, Langlauf/Golf
+        Arosa, Maran
+        Arosa, Prätschli
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>17.06.2017</startDate>
+        <endDate>10.09.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Arosa, Hörnli
+        Arosa, Gada
+        Arosa, Kulm
+        Arosa, Brüggli/Skischule
+        Arosa, Bellevue
+        Arosa, Rathaus
+        Arosa, Zentrum
+        Arosa, Weisshornbahn/Skischule
+        Arosa, Bahnhof
+        Arosa, Weisshornbahn/Skischule
+        Arosa, Obersee
+        Arosa, Surlej
+        Arosa, Ochsenbühl
+        Arosa, Sandhubel
+        Arosa, Alteinplatz
+        Arosa, Wetterweide
+        Arosa, Untersee
+        Arosa, Wetterweide
+        Arosa, Alteinplatz
+        Arosa, Sandhubel
+        Arosa, Seeboden
+        Arosa, Waldwiese/Seilpark
+        Arosa, Seehalde
+        Arosa, Gollrad
+        Arosa, Langlauf/Golf
+        Arosa, Maran
+        Arosa, Prätschli
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>11.09.2017</startDate>
+        <endDate>01.12.2017</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Arosa, Hörnli
+        Arosa, Gada
+        Arosa, Kulm
+        Arosa, Brüggli/Skischule
+        Arosa, Bellevue
+        Arosa, Rathaus
+        Arosa, Zentrum
+        Arosa, Weisshornbahn/Skischule
+        Arosa, Bahnhof
+        Arosa, Obersee
+        Arosa, Surlej
+        Arosa, Sandhubel
+        Arosa, Alteinplatz
+        Arosa, Wetterweide
+        Arosa, Untersee
+        Arosa, Wetterweide
+        Arosa, Alteinplatz
+        Arosa, Sandhubel
+        Arosa, Seeboden
+        Arosa, Waldwiese/Seilpark
+        Arosa, Seehalde
+        Arosa, Gollrad
+        Arosa, Langlauf/Golf
+        Arosa, Maran
+        Arosa, Prätschli
+      </routeDefinition>
+    </routePrintInfo>
+  </timetablePrintInfo>
+</timetablePrintInfoList>

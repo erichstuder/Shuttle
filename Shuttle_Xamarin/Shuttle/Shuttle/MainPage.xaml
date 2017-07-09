@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Shuttle;assembly=Shuttle"
+             x:Class="Shuttle.MainPage"
+             Title="Main Page"
+             BackgroundColor="AliceBlue"
+             Padding="1, 20, 1, 1">
+
+    <ContentPage.BindingContext>
+        <local:SearchViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout
+        VerticalOptions="StartAndExpand">
+
+        <Grid
+            VerticalOptions="Start"
+            HorizontalOptions="Fill">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1.618*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Button
+                Grid.Row="0" Grid.Column="0"
+                WidthRequest="50"
+                Text="↺"
+                TextColor="Black"
+                FontSize="Medium"
+                BackgroundColor="Transparent"
+                Command="{Binding UpdateDateAndTimeCommand}"
+                HorizontalOptions="End" />
+            
+            <DatePicker
+                Grid.Row="0" Grid.Column="1"
+                BackgroundColor="AliceBlue"
+                Format="dd/ MMM/ yyyy"
+                Date="{Binding LaunchDate, Mode=TwoWay}"/>
+
+            <TimePicker
+                Grid.Row="0" Grid.Column="2"
+                BackgroundColor="AliceBlue"
+                Time="{Binding LaunchTime, Mode=TwoWay}"/>
+        </Grid>
+
+
+        <Grid
+            VerticalOptions="Start"
+            HorizontalOptions="Fill">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Row="0" Grid.Column="0"
+                Text="von:"
+                TextColor="Gray"
+                FontSize="Medium"
+                HorizontalTextAlignment="Start"
+                HorizontalOptions="Start"
+                VerticalOptions="Center" />
+
+            <Button
+                x:Name="Button_LaunchStation"
+                Grid.Row="0" Grid.Column="1"
+                Text="{Binding LaunchStopName, Mode=OneWay}"
+                TextColor="Black"
+                FontSize="Medium"
+                BackgroundColor="Transparent"
+                BorderColor="LightGray"
+                BorderWidth="0.5"
+                Clicked="Button_LaunchStation_Clicked"/>
+
+            <Label
+                Grid.Row="1" Grid.Column="0"
+                Text="nach:"
+                TextColor="Gray"
+                FontSize="Medium"
+                HorizontalTextAlignment="Start"
+                HorizontalOptions="Start"
+                VerticalOptions="Center" />
+
+            <Button
+                x:Name="Button_TargetStation"
+                Grid.Row="1" Grid.Column="1"
+                Text="{Binding TargetStopName, Mode=OneWay}"
+                TextColor="Black"
+                FontSize="Medium"
+                BackgroundColor="Transparent"
+                BorderColor="LightGray"
+                BorderWidth="0.5"
+                Clicked="Button_TargetStation_Clicked"/>
+        </Grid>
+        
+        <!--<BoxView
+            BackgroundColor="Black"
+            HorizontalOptions="Fill"
+            VerticalOptions="Start"
+            HeightRequest="1" >
+        </BoxView>-->
+
+        <Label
+            Text="Verbindungen:"
+            TextColor="Gray"
+            FontSize="Medium"
+            HorizontalTextAlignment="Start"
+            HorizontalOptions="Start"
+            VerticalOptions="Start" >
+        </Label>
+
+        <ScrollView
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill" >
+            <Label
+                x:Name="result"
+                Text="{Binding PathsText, Mode=OneWay}"
+                TextColor="Black"
+                FontSize="Medium"
+                HorizontalTextAlignment="Start"
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand">
+            </Label>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Shuttle;assembly=Shuttle"
+             x:Class="Shuttle.StationSelectPage"
+             BackgroundColor="AliceBlue"
+             Padding="1, 20, 1, 1">
+
+    <ContentPage.BindingContext>
+        <local:SearchViewModel/>
+    </ContentPage.BindingContext>
+
+
+    
+    <StackLayout
+        VerticalOptions="Fill">
+
+
+        <!--TODO: Replace "Entry" with "SearchBar". SearchBar is not shown wor any reason-->
+        <!--Text="{Binding StopNameSearchText, Mode=OneWayToSource}"-->
+        <Entry
+            Placeholder="Haltestelle (Tippe * für alle Stationen)"
+            BackgroundColor="AliceBlue"
+            TextChanged="Entry_TextChanged"
+            VerticalOptions="Start"/>
+
+        <!--ItemsSource="{x:Static local:Timetable.StopNames}"-->
+        <ListView
+            x:Name="ListView_SearchedStationNames"
+            BackgroundColor="AliceBlue"
+            ItemSelected="ListView_SearchedStationNames_ItemSelected"
+            VerticalOptions="FillAndExpand">
+            <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Test}"
+                    TextColor="#f35e20"
+                    DetailColor="#503026" />
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+        </ListView>
+
+
+
+
+        <!-- workaround da es scheinbar nicht möglich ist die searchbar
+        <Grid
+            VerticalOptions="StartAndExpand"
+            HorizontalOptions="Fill">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Row="0" Grid.Column="0"
+                Text=""
+                HorizontalOptions="Start"
+                VerticalOptions="StartAndExpand" />
+
+            <SearchBar
+                Grid.Row="0" Grid.Column="1"
+                Placeholder="Zoeken..."/>
+        </Grid>
+        -->
+
+
+    </StackLayout>
+
+
+</ContentPage>
