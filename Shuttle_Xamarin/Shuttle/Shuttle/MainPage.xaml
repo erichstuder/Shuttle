@@ -12,7 +12,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="RefTimeTables_MenuItem" Order="Secondary"  Text="Fahrpläne" Priority="0" Clicked="MenuItem_TimetableRef_Clicked" />
+        <ToolbarItem Name="RefTimeTables_MenuItem" Order="Secondary"  Text="enthaltene Fahrpläne" Priority="0" Clicked="MenuItem_TimetableRef_Clicked" />
     </ContentPage.ToolbarItems>
 
     <StackLayout
