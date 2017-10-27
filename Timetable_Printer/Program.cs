@@ -307,6 +307,7 @@ namespace Timetable_Printer
 
             // check if all trips have been printed
             List<Trip> printedTrips = new List<Trip>();
+            // collect all trips that have been printed
             foreach (TimetablePrintInfo timetablePrintInfo in timetablePrintInfos)
             {
                 foreach (RoutePrintInfo routePrintInfo in timetablePrintInfo.routePrintInfos)
@@ -314,24 +315,42 @@ namespace Timetable_Printer
                     printedTrips.AddRange(routePrintInfo.trips);
                 }
             }
+
+            // find trips that have active days within the active period and have not been printed.
             foreach (Trip trip in trips)
             {
-                DateTime startDate = new DateTime(2017, 04, 18);
-                //DateTime startDate = new DateTime(2016, 12, 11);
-                DateTime endDate = new DateTime(2017, 12, 1);
-                List<DateTime> days = new List<DateTime>(trip.activeDays);
-                for (int n = days.Count - 1; n >= 0; n--)
-                {
-                    DateTime day = days[n];
-                    if (day < startDate || day > endDate)
-                    {
-                        days.Remove(day);
-                    }
-                }
+                //DateTime startDate = new DateTime(2017, 04, 18);
+                ////DateTime startDate = new DateTime(2016, 12, 11);
+                //DateTime endDate = new DateTime(2017, 12, 1);
+                //List<DateTime> days = new List<DateTime>(trip.activeDays);
+                //for (int n = days.Count - 1; n >= 0; n--)
+                //{
+                //    DateTime day = days[n];
+                //    if (day < startDate || day > endDate)
+                //    {
+                //        days.Remove(day);
+                //    }
+                //}
 
-                if (!printedTrips.Contains(trip) && days.Count > 0)
+                //if (!printedTrips.Contains(trip) && days.Count > 0)
+                //{
+                //    //Console.WriteLine(trip.route_id);
+                //    throw new Exception("not all trips are printed!");
+                //}
+
+                if (!printedTrips.Contains(trip))
                 {
                     //Console.WriteLine(trip.route_id);
+                    Console.WriteLine("\n\n\n\n\n\n\n Error Found!!!!!!!!!!!!!");
+                    Console.WriteLine("departure_time: " + trip.stops.First().departure_time);
+                    foreach(Stop stop in trip.stops)
+                    {
+                        Console.WriteLine(stop.stop_name);
+                    }
+                    foreach(DateTime activeDay in trip.activeDays)
+                    {
+                        Console.WriteLine(activeDay);
+                    }
                     throw new Exception("not all trips are printed!");
                 }
             }
@@ -428,6 +447,5 @@ namespace Timetable_Printer
             }
             return false;
         }
-
     }
 }

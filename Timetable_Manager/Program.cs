@@ -158,9 +158,20 @@ namespace Timetable_Manager
                 }), new List<string>(new[] { "061", "062" } ))
             });
 
-            Console.Write("downloading timetable data ... ");
-            string timetablePath = downloadAndUnzipTimetableFiles();
-            Console.WriteLine("done");
+            string timetablePath = "";
+            Console.Write("Would you like to use your own timetable files? [Y/N]: ");
+            string ans = Console.ReadLine();
+            if (ans.ToUpper().Equals("Y"))
+            {
+                Console.Write("Enter path to unzipped timetable files: ");
+                timetablePath = Console.ReadLine();
+            }
+            else
+            {
+                Console.Write("downloading timetable data ... ");
+                timetablePath = downloadAndUnzipTimetableFiles();
+                Console.WriteLine("done");
+            }
 
             List<Trip> trips = new List<Trip>();
             
@@ -209,184 +220,21 @@ namespace Timetable_Manager
             string tripsSerializedJson = JsonConvert.SerializeObject(trips, jsonSerializerSettings);
             File.WriteAllText("..\\..\\trips.json", tripsSerializedJson, System.Text.Encoding.UTF8);
 
-            richtigen Pfad angeben!
-            //C:\Users\erich\Dropbox\Shuttle\Shuttle_Xamarin\Shuttle\Shuttle\Resources
-            //File.WriteAllText("..\\..\\..\\Shuttle\\Shuttle\\Resources\\trips.json", tripsSerializedJson, System.Text.Encoding.UTF8);
+            File.WriteAllText("..\\..\\..\\Shuttle_Xamarin\\Shuttle\\Shuttle\\Resources\\trips.json", tripsSerializedJson, System.Text.Encoding.UTF8);
 
             List <string> stopNames = getAllStopNames(trips);
             stopNames.Sort();
-            string stop_namesSerialized_Json = JsonConvert.SerializeObject(stopNames);
-            File.WriteAllText("..\\..\\stop_names.json", stop_namesSerialized_Json, System.Text.Encoding.UTF8);
+            string stop_namesSerializedJson = JsonConvert.SerializeObject(stopNames);
+            File.WriteAllText("..\\..\\stop_names.json", stop_namesSerializedJson, System.Text.Encoding.UTF8);
 
-            richtigen Pfad angeben!
-            //C:\Users\erich\Dropbox\Shuttle\Shuttle_Xamarin\Shuttle\Shuttle\Resources
-            //File.WriteAllText("..\\..\\..\\Shuttle\\Shuttle\\Resources\\stop_names.json", stop_namesSerialized_Json, System.Text.Encoding.UTF8);
+            File.WriteAllText("..\\..\\..\\Shuttle_Xamarin\\Shuttle\\Shuttle\\Resources\\stop_names.json", stop_namesSerializedJson, System.Text.Encoding.UTF8);
 
-            return;//////////////////////
-
-            
-
-            //HttpWebRequest request = HttpWebRequest.CreateHttp("http://nominatim.openstreetmap.org/reverse?format=xml&accept-language=en&lat=46.835618&lon=9.296333&zo;om=18&addressdetails=1");
-            
-            
-            //request.Credentials = CredentialCache.DefaultCredentials;
-            //request.UserAgent = "Shuttle";
-            //System.Threading.Thread.Sleep(1000);
-            //WebResponse response = request.GetResponse();
-            
-            //// Get the stream containing content returned by the server.
-            //Stream dataStream = response.GetResponseStream();
-            //// Open the stream using a StreamReader for easy access.
-            //StreamReader reader = new StreamReader(dataStream);
-            //// Read the content.
-            //string responseFromServer = reader.ReadToEnd();
-
-
-
-            //List<Service> relevantServices = getRelevantService_ids(startDate, endDate);
-
-            
-
-            bool loadFromFile = false;
-            //List<Trip> trips;
-            if (!loadFromFile)
-            {
-                //List<String> stop_ids = getRelevantStop_ids(villages);
-                //List<String> trip_ids = getTrip_ids(stop_ids);
-                //trips = getTrips(trip_ids);
-                //trips = getStop_names(trips);
-                //trips = getRoute_id(trips);
-                //trips = getRoute_short_name(trips);
-                //trips = getRelevantTrips(trips, relevant_route_short_names);
-                //trips = getActiveDays(trips);
-                
-
-                tripsSerializedJson = JsonConvert.SerializeObject(trips);
-                File.WriteAllText("..\\..\\trips.json", tripsSerializedJson, System.Text.Encoding.UTF8);
-                File.WriteAllText("..\\..\\..\\Shuttle\\Shuttle\\Resources\\trips.json", tripsSerializedJson, System.Text.Encoding.UTF8);
-
-                stopNames = getAllStopNames(trips);
-                stopNames.Sort();
-                stop_namesSerialized_Json = JsonConvert.SerializeObject(stopNames);
-                File.WriteAllText("..\\..\\stop_names.json", stop_namesSerialized_Json, System.Text.Encoding.UTF8);
-                File.WriteAllText("..\\..\\..\\Shuttle\\Shuttle\\Resources\\stop_names.json", stop_namesSerialized_Json, System.Text.Encoding.UTF8);
-            }
-            else
-            {
-                string json = File.ReadAllText("..\\..\\trips.json");
-                trips = JsonConvert.DeserializeObject<List<Trip>>(json);
-            }
-
-            trips = createGraph(trips);
-
-
-            //printTimetable(trips);
-            //Console.ReadLine();
-            //return;
-
-
-
-            bool all = false; //set to false to calculate one path
-            if (all)
-            {
-                List<string> stop_names = getAllStopNames(trips);
-                List<DateTime> dates = new List<DateTime>();
-                //for (DateTime date = new DateTime(2016, 12, 11); DateTime.Compare(date, new DateTime(2017, 12, 9)) <= 0; date = date.AddDays(1))
-                for (DateTime date = new DateTime(2016, 12, 17); DateTime.Compare(date, new DateTime(2016, 12, 20)) <= 0; date = date.AddDays(1))
-                {
-                        dates.Add(date);
-                }
-
-                long maxCalculatingTimeMs = 0;
-                DateTime maxDate = new DateTime(1, 1, 1);
-                string maxLaunchStop_name = null;
-                string maxTargetStop_name = null;
-                foreach (DateTime date in dates)
-                {
-                    //DateTime date = dates[0];
-                    foreach (string launchStop_name in stop_names)
-                    {
-                        foreach (string targetStop_name in stop_names)
-                        {
-                            Console.WriteLine("path searching at:  " + date.ToString(@"dd\.MM\.yyyy") + "  from:  " + launchStop_name + "  to:  " + targetStop_name);
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
-                            var watch = System.Diagnostics.Stopwatch.StartNew();
-                            searchPaths(trips, date, launchStop_name, targetStop_name);
-                            watch.Stop();
-                            long calculatingTimeMs = watch.ElapsedMilliseconds;
-                            if (calculatingTimeMs > maxCalculatingTimeMs)
-                            {
-                                maxCalculatingTimeMs = calculatingTimeMs;
-                                maxDate = date;
-                                maxLaunchStop_name = launchStop_name;
-                                maxTargetStop_name = targetStop_name;
-                            }
-                        }
-                    }
-                }
-                Console.WriteLine("maxCalculatingTimeMs: " + maxCalculatingTimeMs);
-                Console.WriteLine("maxDate: " + maxDate);
-                Console.WriteLine("maxLaunchStop_name: " + maxLaunchStop_name);
-                Console.WriteLine("maxTargetStop_name: " + maxTargetStop_name);
-            }
-            else //single
-            {
-                Console.WriteLine(DateTime.Now.ToString("hh.mm.ss.ffff"));
-                //List<SharedCode.Timetable.Path> paths = searchPaths(trips, new DateTime(2016, 12, 21), "Flims Dorf, Bergbahnen", "Falera, Ponylift");
-                //List<SharedCode.Timetable.Path> paths = searchPaths(trips, new DateTime(2016, 12, 23), "Falera, Giaus sura", "Falera, Chintguns");
-                //List<SharedCode.Timetable.Path> paths = searchPaths(trips, new DateTime(2016, 12, 18), "Falera, Via Fuorns", "Falera, Giaus sura");
-                //List<SharedCode.Timetable.Path> paths = searchPaths(trips, new DateTime(2016, 12, 18), "Flims Dorf, Pleuncas", "Laax GR, Oasa");
-                //List<SharedCode.Timetable.Path> paths = searchPaths(trips, new DateTime(2016, 12, 17), "Fidaz, Waldrand", "Flims Waldhaus, Prau la Selva");
-                //List<SharedCode.Timetable.Path> paths = searchPaths(trips, new DateTime(2016, 12, 17), "Flims Dorf, Oberdorf", "Falera, Giaus sura");
-                //List<SharedCode.Timetable.Path> paths = searchPaths(trips, new DateTime(2016, 12, 18), "Flims Waldhaus, Prau la Selva", "Falera, Manduns");
-                //List<SharedCode.Timetable.Path> paths = searchPaths(trips, new DateTime(2016, 12, 17), "Falera, Via Fuorns", "Fidaz, Pinut");
-                //List<SharedCode.Timetable.Path> paths = searchPaths(trips, new DateTime(2017, 03, 27), "Flims Dorf, Oberdorf", "Flims Dorf, Fussweg Caglims");
-                //List<SharedCode.Timetable.Path> paths = searchPaths(trips, new DateTime(2017, 02, 08), "Falera, Ponylift", "Laax GR, Oasa");
-                List<Shuttle.Timetable.Path> paths = searchPaths(trips, new DateTime(2017, 02, 08), "Flims Waldhaus, Caumasee", "Flims Waldhaus, Caumasee");
-                Console.WriteLine(DateTime.Now.ToString("hh.mm.ss.ffff"));
-
-                foreach (Shuttle.Timetable.Path path in paths)
-                {
-                    foreach (Stop stop in path.stops)
-                    {
-                        Console.WriteLine(stop.arrival_time.ToString(@"hh\:mm") + "  " + stop.stop_name);
-                    }
-                    Console.WriteLine();
-                }
-            }
-
-
-                //foreach (Trip trip in trips)
-                //{
-                //    //Console.WriteLine(trip.direction_id);
-
-                //    //if (trip.route_short_name.Equals("1"))
-                //    //{
-                //    for (int n = 0; n < trip.stops.Count; n++)
-                //    {
-                //        //Console.WriteLine(trip.trip_id + "   " + trip.service_id + "   " + trip.stop_ids.ElementAt(n) + "   " + trip.departure_times.ElementAt(n) + "   " + trip.start_date + "   " + trip.end_date + "   " + trip.route_short_name + "   " + trip.route_id + "   " + trip.direction_id + "   " + trip.stop_names.ElementAt(n));
-                //        //Console.WriteLine(trip.trip_id + "  " + trip.stops[n].departure_time.Substring(0, 5) + "  " + trip.direction_id + "  " + trip.route_short_name + "  " + trip.stops[n].stop_name);
-                //        Console.Write(trip.trip_id + "  " + trip.stops[n].departure_time.ToString(@"hh\:mm") + " " + trip.stops[n].stop_name);
-
-                //        foreach (Stop stop in trip.stops[n].nextStops)
-                //        {
-                //            Console.Write(" => " + stop.departure_time.ToString(@"hh\:mm") + " " + stop.stop_name);
-                //        }
-
-                //        Console.WriteLine("");
-                //    }
-                //    Console.WriteLine("");
-                //}
-
-                Console.WriteLine("end:");
+            Console.Write("Finished! Presse Enter to close.");
             Console.ReadLine();
         }
 
         private static string downloadAndUnzipTimetableFiles()
         {
-            //return "..\\..\\gtfs"; //debug!!!!
-            
             //sobald mehr als ein gtfs file verwendet wird, müssen diese zu einem file gemerged werden, damit das handling der trips einfacher wird
             //es sollen alle fahrpläne in den gleichen ordner gespeichert werden, aber diese heissen alle gleich. hier muss eine lösung gefunden werden.
             //https://github.com/google/transitfeed/wiki/Merge
@@ -422,22 +270,6 @@ namespace Timetable_Manager
 
             return timetableFolder;
         }
-
-        //private static void printTimetable(List<Trip> trips)
-        //{
-        //    //List<Trip> myTrips = new List<Trip>();
-        //    foreach (Trip trip in trips)
-        //    {
-        //        if(trip.trip_short_name == "1" && trip.activeDays.Contains(DateTime.Now.Date))
-        //        {
-        //            foreach (Stop stop in trip.stops)
-        //            {
-        //                Console.WriteLine(stop.arrival_time.ToString(@"hh\:mm") + "  " + stop.departure_time.ToString(@"hh\:mm") + "  " + stop.stop_name);
-        //            }
-        //            Console.WriteLine();
-        //        }
-        //    }
-        //}
 
         private static List<Trip> getRelevantTrips(List<Trip> trips, List<string> relevant_route_short_names)
         {
@@ -508,6 +340,7 @@ namespace Timetable_Manager
                                 {
                                     case "bus_station":
                                     case "transit_station":
+                                    case "street_address": //e.g. valendas-sagogn has neither bus_station nor transit_station
                                         result = r;
                                         break;
                                     default:

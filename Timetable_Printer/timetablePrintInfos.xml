@@ -4,8 +4,8 @@
     <regionInfo>Flims Laax Falera Shuttle</regionInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>10.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>09.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>12</tripsPerPage>
@@ -32,15 +32,41 @@
         Flims Dorf, Bergbahnen
         Flims Dorf, Post
         Flims Dorf, Denter Vias
+        Flims Dorf, Wohnheim Plaids
         Flims, Spielplatz Plaids
         Fidaz, Kirche
         Fidaz, Post
       </routeDefinition>
     </routePrintInfo>
     <routePrintInfo>
+      <!-- workaround as Flims Dorf, Wohnheim Plaids and Flims Dorf, Denter Vias are switched compared to other runs-->
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>09.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>100</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>100</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Laax GR, Bergbahnen
+        Laax GR, Staderas
+        Flims Waldhaus, Camping
+        Flims Waldhaus, Caumasee
+        Flims Waldhaus, Segnes
+        Flims Dorf, Promenada
+        Flims Dorf, Bergbahnen
+        Flims Dorf, Post
+        Flims Dorf, Wohnheim Plaids
+        Flims Dorf, Denter Vias
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>7</tripsPerPage>
@@ -56,9 +82,30 @@
       </routeDefinition>
     </routePrintInfo>
     <routePrintInfo>
+      <!--workaround for the last run of the previous and next routePrintInfo-->
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
+      </activePeriod>
+      <forward>
+        <tripsPerPage>7</tripsPerPage>
+      </forward>
+      <backward>
+        <tripsPerPage>8</tripsPerPage>
+      </backward>
+      <routeDefinition>
+        Flims Dorf, Bergbahnen
+        Flims, Oberdorf
+        Flims, Caglims
+        Flims, Fussweg Caglims
+        Flims, Pleuncas
+        Flims, Casa Caglims
+      </routeDefinition>
+    </routePrintInfo>
+    <routePrintInfo>
+      <activePeriod>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>12</tripsPerPage>
@@ -75,8 +122,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>100</tripsPerPage>
@@ -94,8 +141,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>100</tripsPerPage>
@@ -112,8 +159,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>100</tripsPerPage>
@@ -130,8 +177,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>100</tripsPerPage>
@@ -150,8 +197,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>100</tripsPerPage>
@@ -167,8 +214,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>100</tripsPerPage>
@@ -184,8 +231,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>100</tripsPerPage>
@@ -203,8 +250,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>17.04.2017</endDate>
+        <startDate>16.12.2017</startDate>
+        <endDate>15.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>100</tripsPerPage>
@@ -218,6 +265,7 @@
         Falera, Parcadi
         Falera, Pasternaria Veglia
         Falera, posta
+        Falera, Bigliac
         Falera, Prau da Cuort
         Falera, Samun
         Falera, Lavintgin
@@ -231,8 +279,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>17.12.2016</startDate>
-        <endDate>26.03.2017</endDate>
+        <startDate>23.12.2017</startDate>
+        <endDate>02.04.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>100</tripsPerPage>
@@ -252,12 +300,12 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>18.04.2017</startDate>
-        <endDate>02.06.2017</endDate>
+        <startDate>30.04.2018</startDate>
+        <endDate>01.06.2018</endDate>
       </activePeriod>
       <activePeriod>
-        <startDate>23.10.2017</startDate>
-        <endDate>09.12.2017</endDate>
+        <startDate>22.10.2018</startDate>
+        <endDate>07.12.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>11</tripsPerPage>
@@ -269,6 +317,7 @@
         Fidaz, Post
         Fidaz, Kirche
         Flims, Spielplatz Plaids
+        Flims Dorf, Wohnheim Plaids
         Flims Dorf, Denter Vias
         Flims Dorf, Post
         Flims Dorf, Bergbahnen
@@ -291,8 +340,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>03.06.2017</startDate>
-        <endDate>22.10.2017</endDate>
+        <startDate>04.06.2018</startDate>
+        <endDate>05.10.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>15</tripsPerPage>
@@ -307,6 +356,7 @@
         Fidaz, Post
         Fidaz, Kirche
         Flims, Spielplatz Plaids
+        Flims Dorf, Wohnheim Plaids
         Flims Dorf, Denter Vias
         Flims Dorf, Post
         Flims Dorf, Bergbahnen
@@ -329,8 +379,8 @@
     </routePrintInfo>
     <routePrintInfo>
       <activePeriod>
-        <startDate>01.07.2017</startDate>
-        <endDate>22.10.2017</endDate>
+        <startDate>01.07.2018</startDate>
+        <endDate>21.10.2018</endDate>
       </activePeriod>
       <forward>
         <tripsPerPage>100</tripsPerPage>
