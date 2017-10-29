@@ -354,9 +354,6 @@ namespace Timetable_Printer
                     throw new Exception("not all trips are printed!");
                 }
             }
-
-
-            return;
         }
 
 

@@ -177,15 +177,6 @@ namespace Shuttle
                                 bNext_noPickup = true;
                             }
 
-                            //if (a_stop_name == b_stop_name && a_stop_arrival_time <= b_stop_departure_time && !a_stop.noDropOffAvailable() && !b_stop.noPickupAvailable()) //Möglichkeit zum Umsteigen gefunden
-                            //{
-                            //    if (aNext_stop_name != bNext_stop_name && aBefore_stop_name != bNext_stop_name && aBefore_stop_name != null &&  bNext_stop_name != null)
-                            //    {
-                            //        a_stop.nextStops.Add(b_stop);
-                            //    }
-                            //}
-
-
                             if (a_trip.trip_id != b_trip.trip_id                                                // connections within the trip have already been done above
                                 && a_stop_name == b_stop_name                                                   // stops have the same name
                                 && a_stop_arrival_time <= b_stop_departure_time                                 // times match
@@ -254,18 +245,11 @@ namespace Shuttle
             double actualTimeSpanSeconds = Double.MaxValue;
             foreach (Path path in paths)
             {
-                //TimeSpan arrival_time = path.stops.Last().arrival_time;
-                //TimeSpan departure_time = path.stops.First().departure_time;
-                //TimeSpan newTimeSpan = path.stops.Last().arrival_time - path.stops.First().departure_time;
                 double newTimeSpanSeconds = path.timeSpanSeconds;
                 if (newTimeSpanSeconds < actualTimeSpanSeconds)
                 {
                     actualTimeSpanSeconds = newTimeSpanSeconds;
                     actualPath = path;
-                    //if(actualTimeSpanSeconds == 0) //nicht sicher, ob das was bringt. Wohl eher zu Beginn der Suche.
-                    //{
-                    //    break; //kleiner als 0 ist nicht möglich. Somit ist der kürzeste gefunden.
-                    //}
                 }
             }
             return actualPath;
@@ -273,17 +257,9 @@ namespace Shuttle
 
         private static Path searchSinglePath(List<Stop> launchStops, string targetStop_name, List<string> usedTrip_ids, TimeSpan latestArrivalTime, DateTime launchDateTime)
         {
-            //if (launchStops == null || launchStops.Count == 0)
-            //{
-            //    return null;
-            //}
-
             //initialize
-            //int pathsCountMax = 0;//bebug
             List<string> localUsedTrip_ids = new List<string>();
-            //Path foundPath = null;
             Path actualPath = new Path();
-            //actualPath.stops.Add(launchStop);
             List<Path> paths = new List<Path>();
             foreach (Stop launchStop in launchStops)
             {
@@ -296,15 +272,6 @@ namespace Shuttle
             //search path
             do
             {
-                //debug
-                //if(paths.Count > pathsCountMax)
-                //{
-                //    pathsCountMax = paths.Count;
-                //}
-                //debug
-
-
-
                 if (paths.Count > 0) //wenn noch mögliche Pfade vorhanden sind, dann weiter machen, sonst ist fertig
                 {
                     actualPath = getTimelyShortestPath(paths);
@@ -328,12 +295,6 @@ namespace Shuttle
 
                 foreach (Stop stop in actualPath.stops.Last().nextStops)
                 {
-                    //debug
-                    //int n = 0;
-                    //if (stop.stop_name == "Falera, Parcadi" && stop.arrival_time == new TimeSpan(13,15,00))
-                    //{ n++; }
-                    //debug
-
                     bool stationAlreadyPresent = false;
                     int nrOfElements = actualPath.stops.Count;
                     if (nrOfElements >= 2)
@@ -355,15 +316,6 @@ namespace Shuttle
                                 stationAlreadyPresent = true;
                         }
                     }
-
-                    //for (int n = actualPath.stops.Count - 2; n >= 0; n--)//Ausser der letzten Haltestelle, darf die neue nicht schon vorkommen (Umsteigen).
-                    //{
-                    //    if (actualPath.stops[n].stop_id == stop.stop_id)
-                    //    {
-                    //        stationAlreadyPresent = true;
-                    //        break;
-                    //    }
-                    //}
                     
                     if (!stationAlreadyPresent && !usedTrip_ids.Contains(stop.trip_id) && stop.arrival_time <= latestArrivalTime && stop.trip.activeDays.Contains(launchDateTime))
                     {
@@ -376,19 +328,10 @@ namespace Shuttle
                         Path path = new Path();
                         path.stops = new List<Stop>(actualPath.stops);
                         path.stops.Add(stop);
-                        //while (path.stops.Last().nextStops.Count == 1 && path.stops.Last().stop_name != targetStop_name)//alle nächsten Stationen, bei denen nicht umgestiegen werden kann werden gleich mit angehängt.
-                        //{
-                        //    //Achtung: es darf natürlich nicht über die gesuchte station hinaus hinzugefügt werden!!!
-                        //    path.stops.Add(path.stops.Last().nextStops.Single());
-                        //}
 
-                        //if (path.stops.Last().arrival_time <= latestArrivalTime) //Prüfung nur notwendig, wenn etra stationen hinzugefügt werden (siehe gleich davor)
-                        //{
-                            //calcualte time span
-                            path.timeSpanSeconds = (path.stops.Last().arrival_time - path.stops.First().departure_time).TotalSeconds;
+                        path.timeSpanSeconds = (path.stops.Last().arrival_time - path.stops.First().departure_time).TotalSeconds;
 
-                            paths.Add(path);
-                        //}
+                        paths.Add(path);
                     }
                 }
             }
@@ -483,124 +426,6 @@ namespace Shuttle
             return paths;
         }
 
-        //private static List<Path> searchAllPaths(List<Stop> launchStops, string targetStop_name)
-        //{
-        //    if(launchStops == null || launchStops.Count == 0)
-        //    {
-        //        return null;
-        //    }
-
-        //    //initialize
-        //    List<string> usedTrip_ids = new List<string>();
-        //    List<Path> foundPaths = new List<Path>();
-        //    Path actualPath = new Path();
-        //    //actualPath.stops.Add(launchStop);
-        //    List<Path> paths = new List<Path>();
-        //    foreach (Stop stop in launchStops)
-        //    {
-        //        Path path = new Path();
-        //        path.stops.Add(stop);
-        //        paths.Add(path);
-        //    }
-
-        //    //search path
-        //    do
-        //    {
-        //        if (paths.Count > 0) //wenn noch mögliche Pfade vorhanden sind, dann weiter machen, sonst ist fertig
-        //        {
-        //            actualPath = getTimelyShortestPath(paths);
-        //            paths.Remove(actualPath);
-        //        }
-        //        else
-        //        {
-        //            return foundPaths;
-        //        }
-
-        //        if (actualPath.stops.Last().stop_name == targetStop_name)
-        //        {
-        //            foundPaths.Add(actualPath);
-        //            for(int n = paths.Count-1; n>=0; n--)
-        //            {
-        //                //remove all paths with same start time. This works because it makes no sense anymore to start at this time.
-        //                Path path = paths[n];
-        //                if(path.stops.First().departure_time.CompareTo(actualPath.stops.First().departure_time) == 0 )
-        //                {
-        //                    paths.Remove(path);
-        //                }
-        //            }
-
-        //            foreach(Stop stop in actualPath.stops)
-        //            {
-        //                string trip_id = stop.trip_id;
-        //                if (!usedTrip_ids.Contains(trip_id))
-        //                {
-        //                    usedTrip_ids.Add(trip_id);
-        //                }
-        //            }
-
-        //            for(int n = paths.Count - 1; n>=0; n--)
-        //            {
-        //                Path path = paths[n];
-        //                foreach (Stop stop in path.stops)
-        //                {
-        //                    if(usedTrip_ids.Contains(stop.trip_id))
-        //                    {
-        //                        paths.Remove(path);
-        //                        break;
-        //                    }
-        //                }
-        //            }
-
-
-        //            if (paths.Count > 0) //wenn noch mögliche Pfade vorhanden sind, dann weiter machen, sonst ist fertig
-        //            {
-        //                actualPath = getTimelyShortestPath(paths);
-        //                paths.Remove(actualPath);
-        //            }
-        //            else
-        //            {
-        //                return foundPaths;
-        //            }
-        //        }
-
-
-
-        //        foreach (Stop stop in actualPath.stops.Last().nextStops)
-        //        {
-        //            Path path = new Path();
-        //            path.stops = new List<Stop>(actualPath.stops);
-        //            bool stationAlreadyPresent = false;
-        //            for(int n=actualPath.stops.Count-2; n>=0; n--)//Ausser der letzten Haltestelle, darf die neue nicht schon vorkommen (Umsteigen).
-        //            {
-        //                if(actualPath.stops[n].stop_id == stop.stop_id)
-        //                {
-        //                    stationAlreadyPresent = true;
-        //                    break;
-        //                }
-        //            }
-
-        //            if (!stationAlreadyPresent && path.stops.First().stop_id != stop.stop_id && !usedTrip_ids.Contains(stop.trip_id))
-        //            {
-        //                path.stops.Add(stop);
-        //                while (path.stops.Last().nextStops.Count == 1)//alle nächsten Stationen, bei denen nicht umgestiegen werden kann werden gleich mit angehängt.
-        //                {
-        //                    path.stops.Add(path.stops.Last().nextStops.Single());
-        //                }
-        //                paths.Add(path);
-        //            }
-        //        }
-        //    }
-        //    while (true);
-        //}
-
-        //public static List<Path> searchPaths(List<Trip> trips, DateTime launchDateTime, string launchStop_name, string targetStop_name)
-        //{
-        //    List<Stop> launchStops = getLaunchStops(trips, launchDateTime, launchStop_name);
-
-        //    List<Path> paths = searchAllPaths(launchStops, targetStop_name);
-
-        //    return paths;
-        //}
 
         public static List<string> getAllStopNames(List<Trip> trips)
         {
