@@ -14,15 +14,21 @@ namespace Timetable_Manager
 {
     class Program
     {
-        /* english names for swiss kantons
-         * Graubünden => Grisons
-         * Luzern     => Lucerne
-         */
+        private const int GoogleApisRequestDelay_ms = 3000;
 
-        /* english names for countries
-         * Schweiz => Switzerland
-         */
+        private class TripsPostProcessing
+        {
+            public readonly List<string> allowedVillageNames;
+            public readonly List<DateTime> activeDays;
+            public readonly List<string> allowedTrip_short_names;
 
+            public TripsPostProcessing(List<string> allowedVillageNames, List<DateTime> activeDays, List<string> allowedTrip_short_names)
+            {
+                this.allowedVillageNames = allowedVillageNames;
+                this.activeDays = activeDays;
+                this.allowedTrip_short_names = allowedTrip_short_names;
+            }
+        }
 
         // Defines a timetable in a region e.g. Flims, Laax, Falera, Sagogn
         // separation into regions is necessary as the route_short_name is not unique within a timetable (e.g. switzerland)
@@ -30,16 +36,18 @@ namespace Timetable_Manager
         {
             public readonly List<Village> villages;
             public readonly List<string> route_short_names; //according to gtfs definition these are the line number ids that are unique for a region (hopefully)
+            public readonly TripsPostProcessing tripsPostProcessing;
             public readonly double minLat;
             public readonly double maxLat;
             public readonly double minLng;
             public readonly double maxLng;
             //public List<String> stop_ids;
 
-            public TimetableRegion(List<Village> villages, List<string> route_short_names)
+            public TimetableRegion(List<Village> villages, List<string> route_short_names, TripsPostProcessing tripsPostProcessing)
             {
                 this.villages = villages;
                 this.route_short_names = route_short_names;
+                this.tripsPostProcessing = tripsPostProcessing;
                 
                 double minLat = double.MaxValue;
                 double maxLat = double.MinValue;
@@ -51,21 +59,26 @@ namespace Timetable_Manager
                     //foreach (string postcode in village.postcodes)
                     {
                         string address = village.postal_code + "+" + village.administrative_area_level_2 + "+" + village.administrative_area_level_1 + "+" + village.country;
-                        HttpWebRequest request = HttpWebRequest.CreateHttp("https://maps.googleapis.com/maps/api/geocode/xml?address="+ address +"&language=en");
+
+                        XmlElement documentElement = googleApisAddressRequest(address);
+
+                        //HttpWebRequest request = HttpWebRequest.CreateHttp("https://maps.googleapis.com/maps/api/geocode/xml?address="+ address +"&language=en");
                         
-                        System.Threading.Thread.Sleep(1000); //don't do too many requests
-                        WebResponse response = request.GetResponse();
+                        //System.Threading.Thread.Sleep(GoogleApisRequestDelay_ms); //don't do too many requests
+                        //WebResponse response = request.GetResponse();
 
-                        // Get the stream containing content returned by the server.
-                        Stream dataStream = response.GetResponseStream();
-                        // Open the stream using a StreamReader for easy access.
-                        StreamReader reader = new StreamReader(dataStream);
-                        // Read the content.
-                        string responseFromServer = reader.ReadToEnd();
+                        //// Get the stream containing content returned by the server.
+                        //Stream dataStream = response.GetResponseStream();
+                        //// Open the stream using a StreamReader for easy access.
+                        //StreamReader reader = new StreamReader(dataStream);
+                        //// Read the content.
+                        //string responseFromServer = reader.ReadToEnd();
 
-                        XmlDocument xmlDoc = new XmlDocument();
-                        xmlDoc.LoadXml(responseFromServer);
-                        XmlElement documentElement = xmlDoc.DocumentElement;
+                        //XmlDocument xmlDoc = new XmlDocument();
+                        //xmlDoc.LoadXml(responseFromServer);
+                        //XmlElement documentElement = xmlDoc.DocumentElement;
+
+
                         //XmlNode child = documentElement.FirstChild;
                         XmlNode geometry = documentElement.GetElementsByTagName("geometry").Item(0);
                         XmlNode bounds = geometry.SelectSingleNode("bounds");
@@ -112,7 +125,7 @@ namespace Timetable_Manager
 
 
         static void Main(string[] args)
-        {
+        {            
             //Unstimmigkeiten
             //
             //"Fidaz, Dorf" und "Fidaz, Post"
@@ -140,22 +153,42 @@ namespace Timetable_Manager
             //define the timetables seperated in regions
             //seperation into regions is necessary as the route_short_name is not globally unique
             List<TimetableRegion> timetableRegions = new List<TimetableRegion>(new[] {
-                new TimetableRegion(new List<Village>(new[] {
-                    new Village("7017", "Imboden",  "Graubünden", "Switzerland"), // Flims Dorf
-                    new Village("7018", "Imboden",  "Graubünden", "Switzerland"), // Flims Waldhaus
-                    new Village("7019", "Imboden",  "Graubünden", "Switzerland"), // Fidaz
-                    new Village("7031", "Surselva", "Graubünden", "Switzerland"), // Laax Dorf
-                    new Village("7032", "Surselva", "Graubünden", "Switzerland"), // Laax Murschetg
-                    new Village("7153", "Surselva", "Graubünden", "Switzerland"), // Falera
-                    new Village("7152", "Surselva", "Graubünden", "Switzerland"), // Sagogn
-                    new Village("7151", "Surselva", "Graubünden", "Switzerland"), // Schluein
+                new TimetableRegion(
+                    new List<Village>(new[] {
+                        new Village("7017", "Imboden",  "Graubünden", "Switzerland"), // Flims Dorf
+                        new Village("7018", "Imboden",  "Graubünden", "Switzerland"), // Flims Waldhaus
+                        new Village("7019", "Imboden",  "Graubünden", "Switzerland"), // Fidaz
+                        new Village("7031", "Surselva", "Graubünden", "Switzerland"), // Laax Dorf
+                        new Village("7032", "Surselva", "Graubünden", "Switzerland"), // Laax Murschetg
+                        new Village("7153", "Surselva", "Graubünden", "Switzerland"), // Falera
+                    }),
+                
+                    new List<string>(new[] { "1", "12", "13", "14", "15", "16", "17", "21", "22", "23", "24", "31", "18" } ),
 
-                }), new List<string>(new[] { "1", "12", "13", "14", "15", "16", "17", "21", "22", "23", "24", "31", "18" } )),
+                    null
+                ),
 
-                new TimetableRegion(new List<Village>(new[] {
-                    new Village("7050", "Plessur",  "Graubünden", "Switzerland"), // Arosa
+                //new TimetableRegion(
+                //    new List<Village>(new[] {
+                //        new Village("7152", "Surselva", "Graubünden", "Switzerland"), // Sagogn
+                //        new Village("7151", "Surselva", "Graubünden", "Switzerland"), // Schluein
+                //    }),
+                    
+                //    new List<string>(new[] { "411" } ),
 
-                }), new List<string>(new[] { "061", "062" } ))
+                //    new TripsPostProcessing(
+                //        new List<string>() {"Schluein", "Sagogn", "Laax", "Falera"},
+                //        new List<DateTime>() {createDateTimeList(new DateTime(TBD), new DateTime(TBD)) },
+                //        TBD
+                //    )
+                //),
+
+                //Ruschein Ladir???
+
+                //new TimetableRegion(new List<Village>(new[] {
+                //    new Village("7050", "Plessur",  "Graubünden", "Switzerland"), // Arosa
+
+                //}), new List<string>(new[] { "061", "062" } ))
             });
 
             string timetablePath = "";
@@ -231,6 +264,16 @@ namespace Timetable_Manager
 
             Console.Write("Finished! Presse Enter to close.");
             Console.ReadLine();
+        }
+
+        private static List<DateTime> createDateTimeList(DateTime first, DateTime last)
+        {
+            List<DateTime> list = new List<DateTime>();
+            for (DateTime i = first; i <= last; i=i.AddDays(1))
+            {
+                list.Add(i);
+            }
+            return list;
         }
 
         private static string downloadAndUnzipTimetableFiles()
@@ -311,21 +354,24 @@ namespace Timetable_Manager
                     //check if the station is probable to be in the region
                     if (stop_lat >= timetableRegion.minLat && stop_lat <= timetableRegion.maxLat && stop_lon >= timetableRegion.minLng && stop_lon <= timetableRegion.maxLng)
                     {
-                        HttpWebRequest request = HttpWebRequest.CreateHttp("https://maps.googleapis.com/maps/api/geocode/xml?latlng=" + stop_lat + "," + stop_lon + "&language=en");
+                        XmlElement documentElement = googleApisLatLngRequest(stop_lat + ", " + stop_lon);
 
-                        System.Threading.Thread.Sleep(1000); //don't do too many requests
-                        WebResponse response = request.GetResponse();
+                        //HttpWebRequest request = HttpWebRequest.CreateHttp("https://maps.googleapis.com/maps/api/geocode/xml?latlng=" + stop_lat + "," + stop_lon + "&language=en");
 
-                        // Get the stream containing content returned by the server.
-                        Stream dataStream = response.GetResponseStream();
-                        // Open the stream using a StreamReader for easy access.
-                        StreamReader reader = new StreamReader(dataStream);
-                        // Read the content.
-                        string responseFromServer = reader.ReadToEnd();
+                        //System.Threading.Thread.Sleep(GoogleApisRequestDelay_ms); //don't do too many requests
+                        //WebResponse response = request.GetResponse();
 
-                        XmlDocument xmlDoc = new XmlDocument();
-                        xmlDoc.LoadXml(responseFromServer);
-                        XmlElement documentElement = xmlDoc.DocumentElement;
+                        //// Get the stream containing content returned by the server.
+                        //Stream dataStream = response.GetResponseStream();
+                        //// Open the stream using a StreamReader for easy access.
+                        //StreamReader reader = new StreamReader(dataStream);
+                        //// Read the content.
+                        //string responseFromServer = reader.ReadToEnd();
+
+                        //XmlDocument xmlDoc = new XmlDocument();
+                        //xmlDoc.LoadXml(responseFromServer);
+                        //XmlElement documentElement = xmlDoc.DocumentElement;
+
                         XmlNodeList results = documentElement.GetElementsByTagName("result");
                         XmlNode result = null;
                         foreach (XmlNode r in results)
@@ -341,6 +387,7 @@ namespace Timetable_Manager
                                     case "bus_station":
                                     case "transit_station":
                                     case "street_address": //e.g. valendas-sagogn has neither bus_station nor transit_station
+                                    case "route": //e.g. Promenada has neither bus_station, transit_station nor street_address
                                         result = r;
                                         break;
                                     default:
@@ -743,6 +790,67 @@ namespace Timetable_Manager
                 }
             }
             return trips;
+        }
+
+        private static XmlElement googleApisAddressRequest(string address)
+        {
+            return googleApisRequest("address=" + address);
+        }
+
+        private static XmlElement googleApisLatLngRequest(string latlng)
+        {
+            return googleApisRequest("latlng=" + latlng);
+        }
+
+        private static XmlElement googleApisRequest(string requestPart)
+        {
+            int tryCnt = 0;
+            XmlElement documentElement = null;
+            string status;
+
+            do
+            {
+                tryCnt++;
+
+                //https://developers.google.com/maps/premium/previous-licenses/articles/usage-limits?hl=de
+                if (tryCnt > 3)
+                {
+                    System.Threading.Thread.Sleep(2000);
+                }
+
+                if(tryCnt > 10)
+                {
+                    throw new Exception("OVER_QUERY_LIMIT again and again!");
+                }
+
+                documentElement = googleApisSingleRequest(requestPart);
+                XmlNode statusNode = documentElement.GetElementsByTagName("status").Item(0);
+                status = statusNode.FirstChild.Value;
+            } while (status == "OVER_QUERY_LIMIT");
+
+            Console.WriteLine(tryCnt);//debug
+
+            return documentElement;
+        }
+
+        private static XmlElement googleApisSingleRequest(string requestPart)
+        {
+            System.Threading.Thread.Sleep(100); //don't do too many requests
+            //HttpWebRequest request = HttpWebRequest.CreateHttp("https://maps.googleapis.com/maps/api/geocode/xml?" + requestPart + "&language=en&key=AIzaSyB5x5pX06UrcyVrhxU2osBmGY5wMsIYXoY");//AIzaSyDK7psKXQZKCjHBw-5Frh2WWZd_0Ru4QaA");
+            HttpWebRequest request = HttpWebRequest.CreateHttp("https://maps.googleapis.com/maps/api/geocode/xml?" + requestPart + "&language=en");
+            WebResponse response = request.GetResponse();
+
+            // Get the stream containing content returned by the server.
+            Stream dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            string responseFromServer = reader.ReadToEnd();
+
+            XmlDocument xmlResponse = new XmlDocument();
+            xmlResponse.LoadXml(responseFromServer);
+
+            return xmlResponse.DocumentElement;
         }
     }
 }
